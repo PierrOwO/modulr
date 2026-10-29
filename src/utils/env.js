@@ -1,8 +1,17 @@
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Initialize dotenv once upon module import
-dotenv.config({ path: path.join(process.cwd(), '.env') });
+// Resolve the directory where the CLI package is installed
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Target the .env file located in the root directory of the CLI package
+const cliRootDir = path.resolve(__dirname, '../..');
+const cliEnvPath = path.join(cliRootDir, '.env');
+
+// Initialize dotenv from the CLI package directory
+dotenv.config({ path: cliEnvPath });
 
 /**
  * Retrieves an environment variable in a dynamic Laravel-like style.
