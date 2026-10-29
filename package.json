@@ -1,0 +1,26 @@
+{
+  "name": "modlr",
+  "version": "1.0.0",
+  "description": "High-performance CLI for Laravel Modular Monoliths",
+  "type": "module",
+  "bin": {
+    "mm": "./bin/mm.js"
+  },
+  "scripts": {
+    "start": "node bin/mm.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "commander": "^12.0.0",
+    "dotenv": "^18.0.9",
+    "prompts": "^2.3.4"
+  },
+  "keywords": [
+    "laravel",
+    "modular-monolith",
+    "cli",
+    "generator"
+  ],
+  "author": "Piotr Milos",
+  "license": "MIT"
+}
