@@ -1,0 +1,18 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Support\ServiceProvider;
+
+class {{moduleName}}ServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        // Rejestracja serwisów
+    }
+
+    public function boot(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+    }
+}

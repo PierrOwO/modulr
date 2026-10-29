@@ -1,0 +1,35 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class {{moduleName}}Controller extends Controller
+{
+    public function index(): JsonResponse
+    {
+        return response()->json(['data' => []]);
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+        return response()->json(['message' => 'Pomyślnie utworzono zasób {{moduleName}}'], 201);
+    }
+
+    public function show($id): JsonResponse
+    {
+        return response()->json(['data' => []]);
+    }
+
+    public function update(Request $request, $id): JsonResponse
+    {
+        return response()->json(['message' => 'Pomyślnie zaktualizowano zasób {{moduleName}}']);
+    }
+
+    public function destroy($id): JsonResponse
+    {
+        return response()->json(['message' => 'Pomyślnie usunięto zasób {{moduleName}}']);
+    }
+}

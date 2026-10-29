@@ -1,0 +1,13 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Routing\Controller;
+
+class {{moduleName}}Controller extends Controller
+{
+    public function index()
+    {
+        // Logika modułu {{moduleName}}
+    }
+}

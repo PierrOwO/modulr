@@ -1,0 +1,15 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Routing\Controller;
+
+class {{moduleName}}Controller extends Controller
+{
+    public function __invoke()
+    {
+        return response()->json([
+            'message' => 'Moduł {{moduleName}} działa poprawnie'
+        ]);
+    }
+}

@@ -1,0 +1,17 @@
+<?php
+
+namespace {{namespace}};
+
+readonly class {{moduleName}}DTO
+{
+    public function __construct(
+        // Przykład: public string $title
+    ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            // Mapping
+        );
+    }
+}

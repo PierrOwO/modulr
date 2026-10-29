@@ -1,0 +1,44 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
+
+class {{moduleName}}Controller extends Controller
+{
+    public function index()
+    {
+        // Lista zasobów {{moduleName}}
+    }
+
+    public function create()
+    {
+        // Formularz tworzenia {{moduleName}}
+    }
+
+    public function store(Request $request)
+    {
+        // Zapisywanie nowego zasobu {{moduleName}}
+    }
+
+    public function show($id)
+    {
+        // Wyświetlanie pojedynczego {{moduleName}}
+    }
+
+    public function edit($id)
+    {
+        // Formularz edycji {{moduleName}}
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Aktualizacja {{moduleName}}
+    }
+
+    public function destroy($id)
+    {
+        // Usuwanie {{moduleName}}
+    }
+}

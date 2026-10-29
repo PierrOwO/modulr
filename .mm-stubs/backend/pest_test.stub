@@ -1,0 +1,5 @@
+<?php
+
+it('poprawnie inicjalizuje moduł {{moduleName}}', function () {
+    expect(true)->toBeTrue();
+});
