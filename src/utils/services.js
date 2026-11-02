@@ -39,13 +39,16 @@ export async function generateStub(moduleName, stubPath , stubType, isFrontend=f
     const backendDir    = baseDir(config.backendDir, moduleName);
     const frontendDir   = baseDir(config.frontendDir, moduleName);
     if(!isFrontend){
-        const namespace     = baseNamespace(moduleName, STUB_TYPES[stubType]?.subDir)
-        const tableName     = toSnakeCase(moduleName) + 's';
-        const ctx           = { moduleName, namespace, tableName };
+        const namespace         = baseNamespace(moduleName, STUB_TYPES[stubType]?.subDir)
+        const tableName         = toSnakeCase(moduleName) + 's';
+        const moduleNameLower   = moduleName.toLowerCase();
+        const ctx               = { moduleName, namespace, tableName, moduleNameLower };
 
         const ts = new Date().toISOString().replace(/[-T:\.Z]/g, '').slice(0, 14);
 
-        const isMigrationFile = stubType === 'migration' ?? false
+        const isMigrationFile = stubType === 'migration' ?? false;
+        const isRouteWeb      = stubType === 'web.route' ?? false;
+        const isRouteApi      = stubType === 'api.route' ?? false;
             
             
         
@@ -66,7 +69,15 @@ export async function generateStub(moduleName, stubPath , stubType, isFrontend=f
             path.join(
                 backendDir, 
                 STUB_TYPES[stubType]?.subDir, 
-                isMigrationFile ? `${ts}_create_${tableName}_table.php` : `${moduleName}${STUB_TYPES[stubType]?.suffix}.php`
+                isMigrationFile 
+                ? 
+                `${ts}_create_${tableName}_table.php` 
+                :
+                isRouteWeb
+                ?
+                `web.php`
+                :
+                `${moduleName}${STUB_TYPES[stubType]?.suffix}.php`
             ),
             renderStub(stub, ctx),
             'utf8'

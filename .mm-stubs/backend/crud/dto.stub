@@ -1,0 +1,26 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Modules\{{moduleName}}\Http\Requests\{{moduleName}}Request;
+
+class {{moduleName}}DTO
+{
+    public function __construct(
+        public readonly string $name
+    ) {}
+
+    public static function fromRequest({{moduleName}}Request $request): self
+    {
+        return new self(
+            name: $request->validated('name')
+        );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
+}

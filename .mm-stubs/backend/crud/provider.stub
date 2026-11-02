@@ -8,11 +8,13 @@ class {{moduleName}}ServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // Rejestracja serwisów
+        // Here you can register mappings between interfaces and implementations (bindings).
     }
 
     public function boot(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
+
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations'); 
     }
 }

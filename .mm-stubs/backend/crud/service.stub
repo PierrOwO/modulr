@@ -1,0 +1,38 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Modules\{{moduleName}}\Models\{{moduleName}};
+use App\Modules\{{moduleName}}\DTOs\{{moduleName}}DTO;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+class {{moduleName}}Service
+{
+    public function paginate(int $perPage = 15): LengthAwarePaginator
+    {
+        return {{moduleName}}::latest()->paginate($perPage);
+    }
+
+    public function create({{moduleName}}DTO $dto): {{moduleName}}
+    {
+        return DB::transaction(function () use ($dto) {
+            return {{moduleName}}::create($dto->toArray());
+        });
+    }
+
+    public function update({{moduleName}} ${{moduleName}}, {{moduleName}}DTO $dto): {{moduleName}}
+    {
+        return DB::transaction(function () use (${{moduleName}}, $dto) {
+            ${{moduleName}}->update($dto->toArray());
+            return ${{moduleName}}->fresh();
+        });
+    }
+
+    public function delete({{moduleName}} ${{moduleName}}): bool
+    {
+        return DB::transaction(function () use (${{moduleName}}) {
+            return ${{moduleName}}->delete();
+        });
+    }
+}

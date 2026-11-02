@@ -1,0 +1,55 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Controllers\Controller;
+use App\Modules\{{moduleName}}\Models\{{moduleName}};
+use App\Modules\{{moduleName}}\Services\{{moduleName}}Service;
+use App\Modules\{{moduleName}}\Http\Requests\{{moduleName}}Request;
+use App\Modules\{{moduleName}}\DTOs\{{moduleName}}DTO;
+use App\Modules\{{moduleName}}\Http\Resources\{{moduleName}}Resource;
+use Inertia\Inertia;
+use Inertia\Response;
+use Illuminate\Http\RedirectResponse;
+
+class {{moduleName}}Controller extends Controller
+{
+    public function __construct(
+        protected {{moduleName}}Service $service
+    ) {}
+
+    public function index(): Response
+    {
+        $items = $this->service->paginate();
+
+        return Inertia::render('Modules/{{moduleName}}/Index', [
+            'items' => {{moduleName}}Resource::collection($items),
+        ]);
+    }
+
+    public function store({{moduleName}}Request $request): RedirectResponse
+    {
+        $dto = {{moduleName}}DTO::fromRequest($request);
+        $this->service->create($dto);
+
+        return redirect()->route('{{moduleNameLower}}.index')
+            ->with('success', '{{moduleName}} created successfully.');
+    }
+
+    public function update({{moduleName}}Request $request, {{moduleName}} ${{moduleName}}): RedirectResponse
+    {
+        $dto = {{moduleName}}DTO::fromRequest($request);
+        $this->service->update(${^{moduleName}}, $dto);
+
+        return redirect()->route('{{moduleNameLower}}.index')
+            ->with('success', '{{moduleName}} updated successfully.');
+    }
+
+    public function destroy({{moduleName}} ${{moduleName}}): RedirectResponse
+    {
+        $this->service->delete(${^{moduleName}});
+
+        return redirect()->route('{{moduleNameLower}}.index')
+            ->with('success', '{{moduleName}} deleted successfully.');
+    }
+}

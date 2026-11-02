@@ -6,7 +6,7 @@ import { config } from './config.js';
 
 export async function loadStub(stubPath, fallbackContent, isFrontend = false) {
 
-    const localPath = path.join(process.cwd(), '.mm-stubs', isFrontend ? 'frontend/' + stubPath: 'backend/' + stubPath);
+    const localPath = path.join(process.cwd(), '.mm-stubs', isFrontend ? 'frontend/' + stubPath : 'backend/' + stubPath);
     try {
         return await fs.readFile(localPath, 'utf8');
     } catch {}

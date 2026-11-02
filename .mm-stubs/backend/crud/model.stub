@@ -1,0 +1,22 @@
+<?php
+
+namespace {{namespace}};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class {{moduleName}} extends Model
+{
+    use HasFactory;
+
+    protected $table = '{{tableName}}s';
+
+    protected $fillable = [
+        'name',
+    ];
+
+    protected static function newFactory()
+    {
+        // Opcjonalnie: wskazanie fabryki testowej jeśli używasz
+    }
+}

@@ -12,6 +12,8 @@ export const STUB_TYPES = [
     { key: 'migration',         subDir: 'Database/Migrations',      suffix: '' },
     { key: 'value_object',      subDir: 'Domain/ValueObjects',      suffix: '' },
     { key: 'sub_component',     subDir: 'Domain/SubComponents',     suffix: '' },
+    { key: 'api.route',         subDir: 'Routes',                   suffix: '' },
+    { key: 'web.route',         subDir: 'Routes',                   suffix: '' },
 ];
 
 STUB_TYPES.get = function(key) {

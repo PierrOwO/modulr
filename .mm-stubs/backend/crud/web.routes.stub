@@ -1,0 +1,11 @@
+<?php
+
+use App\Modules\{{moduleName}}\Http\Controllers\{{moduleName}}Controller;
+use Illuminate\Support\Facades\Route;
+
+Route::middleware(['web', 'auth'])->prefix('{{moduleNameLower}}')->name('{{moduleNameLower}}.')->group(function () {
+    Route::get('/', [{{moduleName}}Controller::class, 'index'])->name('index');
+    Route::post('/', [{{moduleName}}Controller::class, 'store'])->name('store');
+    Route::put('/{ {{moduleName}} }', [{{moduleName}}Controller::class, 'update'])->name('update');
+    Route::delete('/{ {{moduleName}} }', [{{moduleName}}Controller::class, 'destroy'])->name('destroy');
+});
