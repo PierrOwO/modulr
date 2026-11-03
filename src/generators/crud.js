@@ -5,9 +5,9 @@ import { config } from '../utils/config.js';
 import { baseDir, createDirs, generateStub } from '../utils/services.js';
 
 export async function generateCrudModule(moduleName, options = {}) {
-    const backendDir  = baseDir(config.backendDir, moduleName);
-    const moduleType = 'CRUD';
-    const moduleData = [
+    const backendDir        = baseDir(config.backendDir, moduleName);
+    const moduleType        = 'CRUD';
+    const moduleComponents  = [
         'controller', 
         'request', 
         'resource', 
@@ -62,7 +62,7 @@ export async function generateCrudModule(moduleName, options = {}) {
     //     console.log(` -> Created Vue component (Inertia)`);
     // }
 
-    await registerModule(moduleName, moduleType, moduleData);
+    await registerModule(moduleName, moduleType, moduleComponents);
 
     console.log(`[OK] ${moduleType} module [${moduleName}] is ready.`);
 }
