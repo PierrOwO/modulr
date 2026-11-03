@@ -2,39 +2,58 @@ import fs from 'fs/promises';
 import path from 'path';
 import { registerModule } from '../utils/registry.js';
 import { config } from '../utils/config.js';
-import { baseDir, generateStub } from '../utils/services.js';
+import { baseDir, createDirs, generateStub } from '../utils/services.js';
 
 export async function generateCrudModule(moduleName, options = {}) {
     const backendDir  = baseDir(config.backendDir, moduleName);
-    const moduleType = 'crud/';
+    const moduleType = 'CRUD';
+    const moduleData = [
+        'controller', 
+        'request', 
+        'resource', 
+        'service', 
+        'web.route', 
+        'model', 
+        'dto', 
+        'migration', 
+        'provider',
+    ]
+    const dirs = [
+        'Http/Controllers',
+        'Http/Resources',
+        'Services',
+        'Http/Requests',
+        'Routes', 
+        'Models', 
+        'DTOs', 
+        'Database/Migrations', 
+        'Providers', 
+        'Tests/Feature'
+    ];
+
+    console.log(`\n⚙️ Generating ${moduleType} module [${moduleName}]...`);
     
-
-    console.log(`\n⚙️ Generating CRUD module [${moduleName}]...`);
-
-    const dirs = ['Http/Controllers','Http/Resources','Services','Http/Requests','Routes', 'Models', 'DTOs', 'Database/Migrations', 'Providers', 'Tests/Feature'];
-    for (const d of dirs) {
-        await fs.mkdir(path.join(backendDir, d), { recursive: true });
-    }
+    await createDirs(backendDir, dirs);
 
 
     // Controller
-    await generateStub(moduleName, moduleType + 'controller.stub', 'controller');
+    await generateStub(moduleName, 'crud/controller.stub', 'controller');
     // Model
-    await generateStub(moduleName, moduleType + 'model.stub', 'model');
+    await generateStub(moduleName, 'crud/model.stub', 'model');
     // DTO
-    await generateStub(moduleName, moduleType + 'dto.stub', 'dto');
+    await generateStub(moduleName, 'crud/dto.stub', 'dto');
     // Migration
-    await generateStub(moduleName, moduleType + 'migration.stub', 'migration');
+    await generateStub(moduleName, 'crud/migration.stub', 'migration');
     // Provider
-    await generateStub(moduleName, moduleType + 'provider.stub', 'provider' );
+    await generateStub(moduleName, 'crud/provider.stub', 'provider' );
     // Resource
-    await generateStub(moduleName, moduleType + 'resource.stub', 'resource' );
+    await generateStub(moduleName, 'crud/resource.stub', 'resource' );
     // Request
-    await generateStub(moduleName, moduleType + 'request.stub', 'request' );
+    await generateStub(moduleName, 'crud/request.stub', 'request' );
     // Service
-    await generateStub(moduleName, moduleType + 'service.stub', 'service' );
+    await generateStub(moduleName, 'crud/service.stub', 'service' );
     // Route
-    await generateStub(moduleName, moduleType + 'web.routes.stub', 'web.route' );
+    await generateStub(moduleName, 'crud/web.routes.stub', 'web.route' );
 
     // Inertia / Vue option
     // if (options.inertia) {
@@ -43,6 +62,7 @@ export async function generateCrudModule(moduleName, options = {}) {
     //     console.log(` -> Created Vue component (Inertia)`);
     // }
 
-    await registerModule(moduleName, 'crud', ['controller', 'model', 'dto', 'migration', 'provider']);
-    console.log(`[OK] CRUD module [${moduleName}] is ready.`);
+    await registerModule(moduleName, moduleType, moduleData);
+
+    console.log(`[OK] ${moduleType} module [${moduleName}] is ready.`);
 }

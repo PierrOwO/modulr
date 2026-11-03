@@ -103,4 +103,12 @@ export async function generateStub(moduleName, stubPath , stubType, isFrontend=f
     
 }
 
+export async function createDirs(baseDir, dirs) {
+    for (const d of dirs) {
+            await fs.mkdir(path.join(baseDir, d), { recursive: true });
+    }
+    return true
+    
+}
+
 
